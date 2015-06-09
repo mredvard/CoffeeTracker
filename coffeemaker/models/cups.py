@@ -17,9 +17,9 @@ class Cup(models.Model):
         ordering = ['-date_created']
 
     created_by = models.ForeignKey(User, verbose_name=_('Author'), related_name='cup_authors')
-    owl = models.ForeignKey(User, verbose_name=_('Owl'), related_name='cup_owls')
-    table = models.ForeignKey(Table, verbose_name=_('Table'))
-    followers = models.ManyToManyField(User)
+    owl = models.ForeignKey(User, verbose_name=_('Owl'), related_name='cup_owls', blank=True, null=True)
+    table = models.ForeignKey(Table, verbose_name=_('Table'), blank=True, null=True)
+    followers = models.ManyToManyField(User, blank=True, null=True)
     title = models.CharField(_('Title'), max_length=255, blank=True)
     description = models.TextField(_('Description'), blank=True)
     completed = models.BooleanField(_('Completed'), default=False)
@@ -29,12 +29,13 @@ class Cup(models.Model):
     # Repetitive tasks
     set_to_repeat = models.BooleanField(_('Set to repeat'), default=False)
     repeat_interval = models.PositiveSmallIntegerField(
-        verbose_name=_('Repeat interval'), choices=INTERVAL_CHOICES, blank=True)
+        verbose_name=_('Repeat interval'), choices=INTERVAL_CHOICES, blank=True, null=True)
     repeat_months = pg_fields.ArrayField(
         verbose_name=_('Months to be repeated'),
         base_field=models.PositiveSmallIntegerField(choices=MONTHS.items()),
         size=12,
-        blank=True
+        blank=True,
+        null=True
     )
     repeat_days = pg_fields.ArrayField(
         verbose_name=_('Days to be repeated'),
@@ -42,14 +43,15 @@ class Cup(models.Model):
             choices=WEEKDAYS_ABBR.items()),
         size=12,
         blank=True,
+        null=True
     )
     repeat_date_range = pg_fields.DateTimeRangeField(
-        verbose_name=_('Repeat date range'), blank=True)
+        verbose_name=_('Repeat date range'), blank=True, null=True)
 
     # Time information
     calendar_date_range = pg_fields.DateTimeRangeField(
-        _('Time range'), blank=True)
-    due_date = models.DateTimeField(_('Due date'), blank=True)
+        _('Time range'), blank=True, null=True)
+    due_date = models.DateTimeField(_('Due date'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date Created'), auto_now_add=True)
     last_modified = models.DateTimeField(_('Last Modified'), auto_now=True)
 
