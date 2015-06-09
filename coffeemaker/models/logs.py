@@ -4,5 +4,5 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-class Comment(models.Model):
+class Log(models.Model):
     pass
