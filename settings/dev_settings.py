@@ -29,7 +29,7 @@ except KeyError:
     raise ImproperlyConfigured('Postgres enviromental variables are not set.')
 
 POSTGRES_SERVER = os.environ.get('CT_POSTGRES_SERVER', 'localhost')
-POSTGRES_PORT = os.environ.get('CT_POSTGRES_PORT', '')
+POSTGRES_PORT = os.environ.get('CT_POSTGRES_PORT', '5432')
 
 try:
     SECRET_KEY = os.environ['CT_SECRET_KEY']
@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Local apps
+    'coffeemaker',
     'webapp',
     'website',
 )
@@ -128,3 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = '/home/radevil/public_html/coffeetracker/static/'
