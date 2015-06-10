@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cup, Table, Log
+from .models import Cup, Table, Log, Room
 
 
 class CupInline(admin.TabularInline):
@@ -40,12 +40,13 @@ class TableAdmin(admin.ModelAdmin):
     ]
     list_display = (
         'id',
-        'owl',
+        'created_by',
         'title',
         'date_created',
     )
     list_filter = (
-        'owl',
+        'created_by',
+        'room',
     )
 
 
@@ -64,3 +65,4 @@ class LogAdmin(admin.ModelAdmin):
 admin.site.register(Cup, CupAdmin)
 admin.site.register(Table, TableAdmin)
 admin.site.register(Log, LogAdmin)
+admin.site.register(Room)
