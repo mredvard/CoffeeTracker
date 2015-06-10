@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cup, Table, Room, Log
+from .models import Cup, Table, Log
 
 
 class CupInline(admin.TabularInline):
@@ -64,4 +64,3 @@ class LogAdmin(admin.ModelAdmin):
 admin.site.register(Cup, CupAdmin)
 admin.site.register(Table, TableAdmin)
 admin.site.register(Log, LogAdmin)
-admin.site.register(Room)
