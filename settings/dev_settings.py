@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'coffeemaker',
     'webapp',
     'website',
+    'welcomeme',
 )
 
 MIDDLEWARE_CLASSES = (
