@@ -12,7 +12,8 @@ class Log(models.Model):
         app_label = "coffeemaker"
         ordering = ['-date_created']
 
-    created_by = models.ForeignKey(User, verbose_name=_('Author'), related_name='log_authors')
+    created_by = models.ForeignKey(
+        User, verbose_name=_('Author'), related_name='log_authors')
     cup = models.ForeignKey(Cup, blank=True, null=True, verbose_name=_('Cup'))
     description = models.TextField(_('Description'), blank=True)
     date_created = models.DateTimeField(_('Date Created'), auto_now_add=True)

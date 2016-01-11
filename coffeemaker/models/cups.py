@@ -16,9 +16,13 @@ class Cup(models.Model):
         app_label = "coffeemaker"
         ordering = ['-date_created']
 
-    created_by = models.ForeignKey(User, verbose_name=_('Author'), related_name='cup_authors')
-    owl = models.ForeignKey(User, verbose_name=_('Owl'), related_name='cup_owls', blank=True, null=True)
-    table = models.ForeignKey(Table, verbose_name=_('Table'), blank=True, null=True)
+    created_by = models.ForeignKey(
+        User, verbose_name=_('Author'), related_name='cup_authors')
+    owl = models.ForeignKey(
+        User, verbose_name=_('Owl'), related_name='cup_owls', blank=True,
+        null=True)
+    table = models.ForeignKey(
+        Table, verbose_name=_('Table'), blank=True, null=True)
     followers = models.ManyToManyField(User, blank=True, null=True)
     title = models.CharField(_('Title'), max_length=255, blank=True)
     description = models.TextField(_('Description'), blank=True)
@@ -29,7 +33,8 @@ class Cup(models.Model):
     # Repetitive tasks
     set_to_repeat = models.BooleanField(_('Set to repeat'), default=False)
     repeat_interval = models.PositiveSmallIntegerField(
-        verbose_name=_('Repeat interval'), choices=INTERVAL_CHOICES, blank=True, null=True)
+        verbose_name=_('Repeat interval'), choices=INTERVAL_CHOICES,
+        blank=True, null=True)
     repeat_months = pg_fields.ArrayField(
         verbose_name=_('Months to be repeated'),
         base_field=models.PositiveSmallIntegerField(choices=MONTHS.items()),

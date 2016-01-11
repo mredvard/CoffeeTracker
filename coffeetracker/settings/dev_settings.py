@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'coffeemaker',
     'webapp',
     'website',
+    'welcomeme',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -145,3 +146,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# AUTH
+AUTH_USER_MODEL = 'accounts.User'

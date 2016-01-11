@@ -1,0 +1,23 @@
+{% extends "web/base.html" %}
+{% load staticfiles %}
+{% load humanize %}
+{% block content %}
+<div class="main-wrapper">
+{% include "web/nav-header.html" %}
+<!--/.header-wrapper -->
+<div class="content-wrap no-margin">
+<section class="product-description-wrap">
+    <div class="container">
+        <form method="post" action="{{ request.get_full_path }}">{% csrf_token %}
+        {{ form }}
+        <button class="orange-button-small" type="submit">Login</button>
+        </form>
+        <a href="{% url 'users:register' %}?next={{ request.GET.next }}">You are not registered? click here to sign up</a>
+    </div>
+</section>
+</div>
+<!-- /.content-wrap -->
+{% include "web/footer.html" %}
+<!-- /.main-footer -->
+</div>
+{% endblock content %}
